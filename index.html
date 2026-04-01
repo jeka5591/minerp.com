@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>MineRP</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0f2c, #1a0f3b, #2b0f5a);
+            color: #e0e6ff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            font-size: 40px;
+            font-weight: bold;
+            background: rgba(10, 15, 44, 0.8);
+            color: #7aa2ff;
+            text-shadow: 0 0 10px #4c6fff, 0 0 20px #6f4cff;
+            border-bottom: 1px solid rgba(122, 162, 255, 0.3);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .top-players {
+            text-align: center;
+            background: rgba(20, 20, 60, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(100, 100, 255, 0.2);
+        }
+
+        .top-players h2 {
+            margin-bottom: 15px;
+            color: #9f7aff;
+            text-shadow: 0 0 8px #7a5cff;
+        }
+
+        .empty {
+            color: #aab0ff;
+            font-style: italic;
+        }
+
+        .soon {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #7aa2ff;
+            text-shadow: 0 0 8px #4c6fff;
+            opacity: 0.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 12px;
+            background: rgba(10, 15, 44, 0.8);
+            font-size: 14px;
+            color: #7aa2ff;
+            border-top: 1px solid rgba(122, 162, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    MineRP
+</header>
+
+<main>
+    <div class="top-players">
+        <h2>Топ игроков</h2>
+        <div class="empty">Пока игроков нет</div>
+        <div class="soon">Скоро...</div>
+    </div>
+</main>
+
+<footer>
+    MineRP сайт версия: 0.1
+</footer>
+
+</body>
+</html>
