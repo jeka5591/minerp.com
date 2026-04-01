@@ -1,92 +1,190 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>MineRP</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0a0f2c, #1a0f3b, #2b0f5a);
-            color: #e0e6ff;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MineRP</title>
 
-        header {
-            text-align: center;
-            padding: 20px;
-            font-size: 40px;
-            font-weight: bold;
-            background: rgba(10, 15, 44, 0.8);
-            color: #7aa2ff;
-            text-shadow: 0 0 10px #4c6fff, 0 0 20px #6f4cff;
-            border-bottom: 1px solid rgba(122, 162, 255, 0.3);
-        }
+<style>
+:root {
+    --bg: linear-gradient(135deg, #0a0f2c, #1a0f3b, #2b0f5a);
+    --text: #e0e6ff;
+    --header-bg: rgba(10, 15, 44, 0.8);
+    --card-bg: rgba(20, 20, 60, 0.6);
+    --accent: #7aa2ff;
+}
 
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
+/* Темы */
+.neon {
+    --bg: linear-gradient(135deg, #0a0f2c, #1a0f3b, #2b0f5a);
+    --text: #e0e6ff;
+    --header-bg: rgba(10, 15, 44, 0.8);
+    --card-bg: rgba(20, 20, 60, 0.6);
+    --accent: #7aa2ff;
+}
 
-        .top-players {
-            text-align: center;
-            background: rgba(20, 20, 60, 0.6);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(100, 100, 255, 0.2);
-        }
+.dark {
+    --bg: #121212;
+    --text: #eaeaea;
+    --header-bg: #1e1e1e;
+    --card-bg: #2a2a2a;
+    --accent: #888;
+}
 
-        .top-players h2 {
-            margin-bottom: 15px;
-            color: #9f7aff;
-            text-shadow: 0 0 8px #7a5cff;
-        }
+.light {
+    --bg: #f5f7ff;
+    --text: #111;
+    --header-bg: #ffffff;
+    --card-bg: #ffffff;
+    --accent: #4c6fff;
+}
 
-        .empty {
-            color: #aab0ff;
-            font-style: italic;
-        }
+/* База */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    animation: fadeIn 1s ease;
+    transition: 0.3s;
+}
 
-        .soon {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #7aa2ff;
-            text-shadow: 0 0 8px #4c6fff;
-            opacity: 0.8;
-        }
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
 
-        footer {
-            text-align: center;
-            padding: 12px;
-            background: rgba(10, 15, 44, 0.8);
-            font-size: 14px;
-            color: #7aa2ff;
-            border-top: 1px solid rgba(122, 162, 255, 0.3);
-        }
-    </style>
+header {
+    text-align: center;
+    padding: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    background: var(--header-bg);
+    color: var(--accent);
+    border-bottom: 1px solid rgba(122, 162, 255, 0.3);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Карточка */
+.top-players {
+    text-align: center;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(100, 100, 255, 0.2);
+}
+
+.top-players h2 {
+    margin-bottom: 15px;
+    color: var(--accent);
+}
+
+.empty {
+    font-style: italic;
+}
+
+/* "Скоро" вне блока */
+.soon {
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--accent);
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 12px;
+    background: var(--header-bg);
+    font-size: 14px;
+    color: var(--accent);
+    border-top: 1px solid rgba(122, 162, 255, 0.3);
+    line-height: 1.6;
+}
+
+/* Кнопка */
+.theme-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: var(--card-bg);
+    color: var(--accent);
+    border: 1px solid rgba(122,162,255,0.3);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Меню */
+.theme-menu {
+    position: fixed;
+    top: 50px;
+    right: 15px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 10px;
+    display: none;
+}
+
+.theme-menu button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+}
+</style>
 </head>
-<body>
 
-<header>
-    MineRP
-</header>
+<body class="neon">
+
+<button class="theme-btn" onclick="toggleMenu()">Тема</button>
+
+<div class="theme-menu" id="menu">
+    <button onclick="setTheme('neon')">Неоновая</button>
+    <button onclick="setTheme('dark')">Тёмная</button>
+    <button onclick="setTheme('light')">Светлая</button>
+</div>
+
+<header>MineRP</header>
 
 <main>
     <div class="top-players">
         <h2>Топ игроков</h2>
         <div class="empty">Пока игроков нет</div>
-        <div class="soon">Скоро...</div>
     </div>
+
+    <div class="soon">Скоро...</div>
 </main>
 
 <footer>
-    MineRP сайт версия: 0.1
+    MineRP сайт версия: 0.2<br>
+    Создатель сервера и сайта: ЖЕКА
 </footer>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function setTheme(theme) {
+    document.body.className = theme;
+}
+</script>
 
 </body>
 </html>
