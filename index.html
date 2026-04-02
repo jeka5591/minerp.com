@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MineRP</title>
-
 <style>
 :root {
     --bg: linear-gradient(135deg, #0a0f2c, #1a0f3b, #2b0f5a);
@@ -15,167 +14,137 @@
 }
 
 /* Темы */
-.neon {
-    --bg: linear-gradient(135deg, #0a0f2c, #1a0f3b, #2b0f5a);
-    --text: #e0e6ff;
-    --header-bg: rgba(10, 15, 44, 0.8);
-    --card-bg: rgba(20, 20, 60, 0.6);
-    --accent: #7aa2ff;
-}
-
+.neon { --bg: linear-gradient(135deg, #0a0f2c, #1a0f3b, #2b0f5a); }
 .dark {
-    --bg: #121212;
-    --text: #eaeaea;
-    --header-bg: #1e1e1e;
-    --card-bg: #2a2a2a;
-    --accent: #888;
+    --bg: #121212; --text:#eaeaea; --header-bg:#1e1e1e; --card-bg:#2a2a2a; --accent:#888;
 }
-
 .light {
-    --bg: #f5f7ff;
-    --text: #111;
-    --header-bg: #ffffff;
-    --card-bg: #ffffff;
-    --accent: #4c6fff;
+    --bg:#f5f7ff; --text:#111; --header-bg:#fff; --card-bg:#fff; --accent:#4c6fff;
 }
 
-/* База */
+/* НЕОН ТЕКСТ */
+.neon-text * {
+    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent), 0 0 20px var(--accent);
+}
+
+/* Общие стили */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    animation: fadeIn 1s ease;
-    transition: 0.3s;
+    margin:0; font-family:Arial; background:var(--bg); color:var(--text);
+    display:flex; flex-direction:column; min-height:100vh;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
-}
+header { text-align:center; padding:20px; font-size:40px; font-weight:bold; background:var(--header-bg); color:var(--accent); }
+main { flex:1; display:flex; justify-content:center; align-items:center; }
+footer { text-align:center; padding:10px; background:var(--header-bg); color:var(--accent); }
 
-header {
-    text-align: center;
-    padding: 20px;
-    font-size: 40px;
-    font-weight: bold;
-    background: var(--header-bg);
-    color: var(--accent);
-    border-bottom: 1px solid rgba(122, 162, 255, 0.3);
-}
+/* Игроки */
+.players { background:var(--card-bg); padding:30px; border-radius:15px; max-width:500px; width:90%; }
+.player { margin-top:15px; padding:15px; background:rgba(0,0,0,0.2); border-radius:10px; }
+.player-info { max-height:0; overflow:hidden; transition:0.4s; opacity:0; }
+.player-info.open { max-height:500px; opacity:1; margin-top:10px; }
 
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+/* Кнопки */
+button { padding:8px 14px; border-radius:8px; border:1px solid var(--accent); background:var(--card-bg); color:var(--accent); cursor:pointer; transition:0.3s; }
+button:hover { background:var(--accent); color:#000; box-shadow:0 0 10px var(--accent),0 0 20px var(--accent); }
+button:active { transform:scale(0.95); }
 
-/* Карточка */
-.top-players {
-    text-align: center;
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(100, 100, 255, 0.2);
-}
-
-.top-players h2 {
-    margin-bottom: 15px;
-    color: var(--accent);
-}
-
-.empty {
-    font-style: italic;
-}
-
-/* "Скоро" вне блока */
-.soon {
-    margin-top: 20px;
-    font-size: 18px;
-    color: var(--accent);
-    opacity: 0.8;
-    text-align: center;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 12px;
-    background: var(--header-bg);
-    font-size: 14px;
-    color: var(--accent);
-    border-top: 1px solid rgba(122, 162, 255, 0.3);
-    line-height: 1.6;
-}
-
-/* Кнопка */
-.theme-btn {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    background: var(--card-bg);
-    color: var(--accent);
-    border: 1px solid rgba(122,162,255,0.3);
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-/* Меню */
-.theme-menu {
-    position: fixed;
-    top: 50px;
-    right: 15px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 10px;
-    display: none;
-}
-
-.theme-menu button {
-    display: block;
-    width: 100%;
-    margin: 5px 0;
-    background: none;
-    border: none;
-    color: var(--text);
-    cursor: pointer;
-}
+/* Верхние кнопки */
+.neon-btn, .theme-btn { position:fixed; top:15px; z-index:10; }
+.neon-btn { left:15px; }
+.theme-btn { right:15px; }
+.theme-menu { position:fixed; top:50px; right:15px; background:var(--card-bg); padding:10px; border-radius:10px; display:none; }
+.theme-menu button { width:100%; margin-top:5px; }
 </style>
 </head>
 
 <body class="neon">
 
-<button class="theme-btn" onclick="toggleMenu()">Тема</button>
+<!-- Звук -->
+<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+<!-- Кнопки -->
+<button class="neon-btn" onclick="playSound(); toggleNeon()">Неон текст</button>
+<button class="theme-btn" onclick="playSound(); toggleMenu()">Тема</button>
 
 <div class="theme-menu" id="menu">
-    <button onclick="setTheme('neon')">Неоновая</button>
-    <button onclick="setTheme('dark')">Тёмная</button>
-    <button onclick="setTheme('light')">Светлая</button>
+    <button onclick="playSound(); setTheme('neon')">Неоновая</button>
+    <button onclick="playSound(); setTheme('dark')">Тёмная</button>
+    <button onclick="playSound(); setTheme('light')">Светлая</button>
 </div>
 
 <header>MineRP</header>
 
 <main>
-    <div class="top-players">
-        <h2>Топ игроков</h2>
-        <div class="empty">Пока игроков нет</div>
-    </div>
+    <div class="players">
+        <h2>Игроки</h2>
 
-    <div class="soon">Скоро...</div>
+        <!-- NaricoWLW -->
+        <div class="player">
+            <b>NaricoWLW</b><br>
+            <button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+            <div class="player-info">
+                <div>1. Ник в игре: NaricoWLW</div>
+                <div>2. По жизни: Заместитель и руководитель Nazbol gang NKA</div>
+                <div>3. ФИО: Нарико Икадзути-но Кайзер</div>
+                <div>4. Год рождения: 05.05.1955</div>
+                <div>5. Проживание: Нету</div>
+            </div>
+        </div>
+
+        <!-- Klop6044 -->
+        <div class="player">
+            <b>Klop6044</b><br>
+            <button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+            <div class="player-info">
+                <div>1. Ник в игре: Klop6044</div>
+                <div>2. По жизни: Великий вождь</div>
+                <div>3. ФИО: Засекречено</div>
+                <div>4. Год рождения: Секретно</div>
+                <div>5. Проживание: Нету</div>
+            </div>
+        </div>
+
+        <!-- ViPolus4346 -->
+        <div class="player">
+            <b>ViPolus4346</b><br>
+            <button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+            <div class="player-info">
+                <div>1. Ник в игре: ViPolus4346</div>
+                <div>2. По жизни: Сепаратист</div>
+                <div>3. ФИО: Осак Авальный</div>
+                <div>4. Год рождения: 06.07.1897</div>
+                <div>5. Проживание: Нету</div>
+            </div>
+        </div>
+
+        <!-- turikaher -->
+        <div class="player">
+            <b>turikaher</b><br>
+            <button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+            <div class="player-info">
+                <div>1. Ник в игре: turikaher</div>
+                <div>2. По жизни: Строитель</div>
+                <div>3. ФИО: Пэйган Мин</div>
+                <div>4. Год рождения: 1957</div>
+                <div>5. Проживание: Нету</div>
+            </div>
+        </div>
+
+    </div>
 </main>
 
 <footer>
-    MineRP сайт версия: 0.2<br>
-    Создатель сервера и сайта: ЖЕКА
+MineRP сайт версия: 0.3<br>
+Создатель: ЖЕКА
 </footer>
 
 <script>
+function playSound() {
+    const sound = document.getElementById("clickSound");
+    sound.currentTime = 0;
+    sound.play();
+}
+
 function toggleMenu() {
     const menu = document.getElementById("menu");
     menu.style.display = menu.style.display === "block" ? "none" : "block";
@@ -183,6 +152,16 @@ function toggleMenu() {
 
 function setTheme(theme) {
     document.body.className = theme;
+}
+
+function togglePlayer(btn) {
+    const info = btn.nextElementSibling;
+    info.classList.toggle("open");
+    btn.textContent = info.classList.contains("open") ? "Скрыть профиль" : "Показать профиль";
+}
+
+function toggleNeon() {
+    document.body.classList.toggle("neon-text");
 }
 </script>
 
