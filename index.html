@@ -12,148 +12,41 @@
     --card-bg: rgba(20, 20, 60, 0.6);
     --accent: #7aa2ff;
 }
-
 .neon { --bg: linear-gradient(135deg, #0a0f2c, #1a0f3b, #2b0f5a); }
+.dark { --bg: #121212; --text: #e0e6ff; --header-bg: #1e1e1e; --card-bg: #2a2a2a; --accent: #7aa2ff; }
+.light { --bg:#f5f7ff; --text:#111; --header-bg:#fff; --card-bg:#fff; --accent:#4c6fff; }
 
-.dark {
-    --bg: #121212;
-    --text: #e0e6ff;
-    --header-bg: #1e1e1e;
-    --card-bg: #2a2a2a;
-    --accent: #7aa2ff;
-}
+body { margin:0; font-family:Arial; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; }
+header { text-align:center; padding:20px; font-size:40px; font-weight:bold; background:var(--header-bg); color:var(--accent); text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent), 0 0 20px var(--accent); }
+main { flex:1; display:flex; justify-content:center; align-items:flex-start; padding-top:20px; }
+footer { text-align:center; padding:10px; background:var(--header-bg); color:var(--accent); }
 
-.light {
-    --bg:#f5f7ff; --text:#111; --header-bg:#fff; --card-bg:#fff; --accent:#4c6fff;
-}
+.players { background:var(--card-bg); padding:30px; border-radius:15px; max-width:500px; width:90%; }
+.player { margin-top:15px; padding:15px; background:rgba(0,0,0,0.2); border-radius:10px; }
+.player-info { max-height:0; overflow:hidden; transition:0.4s; opacity:0; }
+.player-info.open { max-height:500px; opacity:1; margin-top:10px; }
 
-/* НЕОН только для заголовка */
-header {
-    text-align:center;
-    padding:20px;
-    font-size:40px;
-    font-weight:bold;
-    background:var(--header-bg);
-    color:var(--accent);
-    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent), 0 0 20px var(--accent);
-}
+.vip { border:2px solid gold; box-shadow:0 0 15px gold,0 0 30px gold; background:rgba(255,215,0,0.1); }
+.gold-text { color:gold; text-shadow:0 0 5px gold,0 0 10px gold,0 0 20px gold; }
 
-body {
-    margin:0;
-    font-family:Arial;
-    background:var(--bg);
-    color:var(--text);
-    display:flex;
-    flex-direction:column;
-    min-height:100vh;
-}
-
-main {
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding-top:20px;
-}
-
-footer {
-    text-align:center;
-    padding:10px;
-    background:var(--header-bg);
-    color:var(--accent);
-}
-
-/* Игроки */
-.players {
-    background:var(--card-bg);
-    padding:30px;
-    border-radius:15px;
-    max-width:500px;
-    width:90%;
-}
-
-.player {
-    margin-top:15px;
-    padding:15px;
-    background:rgba(0,0,0,0.2);
-    border-radius:10px;
-}
-
-.player-info {
-    max-height:0;
-    overflow:hidden;
-    transition:0.4s;
-    opacity:0;
-}
-
-.player-info.open {
-    max-height:500px;
-    opacity:1;
-    margin-top:10px;
-}
-
-/* VIP */
-.vip {
-    border:2px solid gold;
-    box-shadow:0 0 15px gold,0 0 30px gold;
-    background:rgba(255,215,0,0.1);
-}
-
-/* золотой текст */
-.gold-text {
-    color:gold;
-    text-shadow:0 0 5px gold,0 0 10px gold,0 0 20px gold;
-}
-
-/* Кнопки */
-button {
-    padding:8px 14px;
-    border-radius:8px;
-    border:1px solid var(--accent);
-    background:var(--card-bg);
-    color:var(--accent);
-    cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover {
-    background:var(--accent);
-    color:#000;
-    box-shadow:0 0 10px var(--accent),0 0 20px var(--accent);
-}
-
+button { padding:8px 14px; border-radius:8px; border:1px solid var(--accent); background:var(--card-bg); color:var(--accent); cursor:pointer; transition:0.3s; }
+button:hover { background:var(--accent); color:#000; box-shadow:0 0 10px var(--accent),0 0 20px var(--accent); }
 button:active { transform:scale(0.95); }
 
-/* Верх */
-.theme-btn {
-    position:fixed;
-    top:10px;
-    right:10px;
-    z-index:999;
-}
-
-.theme-menu {
-    position:fixed;
-    top:50px;
-    right:10px;
-    background:var(--card-bg);
-    padding:10px;
-    border-radius:10px;
-    display:none;
-}
-
-.theme-menu button {
-    width:100%;
-    margin-top:5px;
-}
+.theme-btn { position:fixed; top:10px; right:10px; z-index:999; }
+.theme-menu { position:fixed; top:50px; right:10px; background:var(--card-bg); padding:10px; border-radius:10px; display:none; }
+.theme-menu button { width:100%; margin-top:5px; }
 
 .player-info div { margin:3px 0; }
-img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
+.player-info img { max-width:100%; border-radius:10px; display:block; margin:10px auto; cursor:pointer; }
+img { max-width:100%; border-radius:10px; display:block; margin:10px auto; cursor:pointer; }
 .map-section { text-align:center; margin-top:20px; }
 .map-section div { color:var(--accent); font-weight:bold; margin-top:5px; }
+
+#mapModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:1000; }
+#mapModal img { max-width:95%; max-height:95%; border-radius:10px; }
 </style>
 </head>
-
 <body class="neon">
 
 <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
@@ -172,10 +65,12 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 <div class="players">
 <h2>Игроки</h2>
 
+<!-- VIP игрок с фото -->
 <div class="player vip gold-text">
 <b>Jeeka 👑</b><br>
-<button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+<button onclick="togglePlayer(this)">Показать профиль</button>
 <div class="player-info">
+<img src="кпи.jfif" alt="Жека аватар">
 <div>1. Ник в игре: Jeeka</div>
 <div>2. По жизни: БОГ</div>
 <div>3. ФИО: ЖЕКА БОГ БОГОВИЧ</div>
@@ -184,11 +79,26 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 </div>
 </div>
 
+<!-- Carvanyap -->
 <div class="player">
-<b>NaricoWLW</b><br>
-<button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+<b>Carvanyap</b><br>
+<button onclick="togglePlayer(this)">Показать профиль</button>
 <div class="player-info">
-<div>1. Ник в игре: NaricoWLW</div>
+<div>1. Ник в игре: Carvanyap</div>
+<div>2. По жизни: Бизнесмен</div>
+<div>3. ФИО: Стойка Дубовин Доскович</div>
+<div>4. Год рождения: 29.02.1972</div>
+<div>5. Проживание: Нету</div>
+</div>
+</div>
+
+<!-- NaricoWLW/NaricoUwU с картинкой -->
+<div class="player">
+<b>NaricoWLW/NaricoUwU</b><br>
+<button onclick="togglePlayer(this)">Показать профиль</button>
+<div class="player-info">
+<img src="IMG_20260404_132030_064.jpg" alt="NaricoWLW аватар">
+<div>1. Ник в игре: NaricoWLW/NaricoUwU</div>
 <div>2. По жизни: Заместитель и руководитель Nazbol gang NKA</div>
 <div>3. ФИО: Нарико Икадзути-но Кайзер</div>
 <div>4. Год рождения: 05.05.1955</div>
@@ -196,9 +106,10 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 </div>
 </div>
 
+<!-- Остальные игроки с предыдущими фото -->
 <div class="player">
 <b>Klop6044</b><br>
-<button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+<button onclick="togglePlayer(this)">Показать профиль</button>
 <div class="player-info">
 <div>1. Ник в игре: Klop6044</div>
 <div>2. По жизни: Великий вождь</div>
@@ -210,7 +121,7 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 
 <div class="player">
 <b>ViPolus4346</b><br>
-<button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+<button onclick="togglePlayer(this)">Показать профиль</button>
 <div class="player-info">
 <div>1. Ник в игре: ViPolus4346</div>
 <div>2. По жизни: Сепаратист</div>
@@ -222,7 +133,7 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 
 <div class="player">
 <b>turikaher</b><br>
-<button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+<button onclick="togglePlayer(this)">Показать профиль</button>
 <div class="player-info">
 <div>1. Ник в игре: turikaher</div>
 <div>2. По жизни: Строитель</div>
@@ -234,7 +145,7 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 
 <div class="player">
 <b>chepux1555</b><br>
-<button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+<button onclick="togglePlayer(this)">Показать профиль</button>
 <div class="player-info">
 <div>1. Ник в игре: chepux1555</div>
 <div>2. По жизни: Начальник Морского Порта</div>
@@ -246,7 +157,7 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 
 <div class="player">
 <b>klon606 / KAPIBARA7710</b><br>
-<button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+<button onclick="togglePlayer(this)">Показать профиль</button>
 <div class="player-info">
 <div>1. Ник в игре: klon606 / KAPIBARA7710</div>
 <div>2. По жизни: Основатель и директор АЗС</div>
@@ -258,8 +169,9 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 
 <div class="player">
 <b>dumic</b><br>
-<button onclick="playSound(); togglePlayer(this)">Показать профиль</button>
+<button onclick="togglePlayer(this)">Показать профиль</button>
 <div class="player-info">
+<img src="IMG_20260404_132048_672.jpg" alt="dumic аватар">
 <div>1. Ник в игре: dumic</div>
 <div>2. По жизни: Ноу-хау Истребитель Xoxlov</div>
 <div>3. ФИО: Zovлендер</div>
@@ -270,24 +182,23 @@ img { max-width:100%; border-radius:10px; display:block; margin:10px auto; }
 
 <!-- КАРТА -->
 <div class="map-section">
-<img src="Без названия31_20260331173236.png" alt="карта" style="width:200px;">
+<img id="mapImg" src="Без названия31_20260331173236.png" alt="карта" style="width:200px;">
 <div>КАРТА</div>
 </div>
+
+<div id="mapModal"><img id="mapModalImg" src=""></div>
 
 </div>
 </main>
 
 <footer>
-MineRP сайт версия: 0.4<br>
+MineRP сайт версия: 0.5<br>
 Создатель: ЖЕКА
 </footer>
 
 <script>
-function playSound() {
-    const sound = document.getElementById("clickSound");
-    sound.currentTime = 0;
-    sound.play();
-}
+const clickSound = document.getElementById("clickSound");
+function playSound(){ clickSound.currentTime=0; clickSound.play(); }
 
 function toggleMenu() {
     const menu = document.getElementById("menu");
@@ -298,17 +209,32 @@ function setTheme(theme) {
     document.body.className = theme;
     localStorage.setItem("theme", theme);
 }
-
 const savedTheme = localStorage.getItem("theme");
-if (savedTheme) {
-    document.body.className = savedTheme;
-}
+if(savedTheme) document.body.className = savedTheme;
 
-function togglePlayer(btn) {
+function togglePlayer(btn){
     const info = btn.nextElementSibling;
     info.classList.toggle("open");
     btn.textContent = info.classList.contains("open") ? "Скрыть профиль" : "Показать профиль";
 }
+
+// Карта на весь экран
+const mapImg = document.getElementById("mapImg");
+const mapModal = document.getElementById("mapModal");
+const mapModalImg = document.getElementById("mapModalImg");
+mapImg.addEventListener("click", ()=>{
+    mapModal.style.display = "flex";
+    mapModalImg.src = mapImg.src;
+});
+mapModal.addEventListener("click", ()=>{ mapModal.style.display = "none"; });
+
+// Клик по фото профиля (открыть на весь экран)
+document.querySelectorAll('.player-info img').forEach(img=>{
+    img.addEventListener('click', ()=>{
+        mapModal.style.display = "flex";
+        mapModalImg.src = img.src;
+    });
+});
 </script>
 
 </body>
